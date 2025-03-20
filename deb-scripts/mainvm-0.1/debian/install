@@ -1,0 +1,4 @@
+scripts/build_ssh_connection.sh /usr/bin/
+scripts/build_static_ip.sh /usr/bin/
+scripts/backup_git.sh /usr/bin
+scripts/build_mainvm.sh /usr/bin

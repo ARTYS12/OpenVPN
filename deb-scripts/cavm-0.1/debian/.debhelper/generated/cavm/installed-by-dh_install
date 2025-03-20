@@ -1,0 +1,3 @@
+./files/vars
+./scripts/build_cavm.sh
+./scripts/create_ca.sh

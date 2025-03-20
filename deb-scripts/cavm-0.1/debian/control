@@ -1,0 +1,19 @@
+Source: cavm
+Section: unknown
+Priority: optional
+Maintainer: Artyom <artys@unknown>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.6.2
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/cavm
+#Vcs-Git: https://salsa.debian.org/debian/cavm.git
+
+Package: cavm
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+Description:<Package with scripts used to configure the certification server>
+ <A package with scripts used to configure the certification server. Scripts: build_cavm.sh - when running this script, the server is fully configured with a certificate authority, which includes installing a firewall, installing easy-rsa, and creating a root certificate. The script create_ca.sh - when running this script, the pki is initialized and a root certificate is created. The script iptables.sh - when running this script, iptables rules are set.>

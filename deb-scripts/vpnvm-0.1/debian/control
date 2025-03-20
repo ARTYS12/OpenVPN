@@ -1,0 +1,19 @@
+Source: vpnvm
+Section: unknown
+Priority: optional
+Maintainer: Artyom <artys@unknown>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.6.2
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/vpnvm
+#Vcs-Git: https://salsa.debian.org/debian/vpnvm.git
+
+Package: vpnvm
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+Description: <insert up to 60 chars description>
+ <Insert long description, indented with spaces.>

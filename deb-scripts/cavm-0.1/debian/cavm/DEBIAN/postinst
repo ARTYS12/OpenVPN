@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+read -p "Enter root's nickname: " name
+
+mkdir /home/"$name"/easy-rsa
+mv /tmp/vars /home/"$name"/easy-rsa/

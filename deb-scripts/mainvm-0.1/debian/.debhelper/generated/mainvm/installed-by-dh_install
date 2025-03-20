@@ -1,0 +1,3 @@
+./scripts/build_ssh_connection.sh
+./scripts/build_static_ip.sh
+./scripts/backup_git.sh

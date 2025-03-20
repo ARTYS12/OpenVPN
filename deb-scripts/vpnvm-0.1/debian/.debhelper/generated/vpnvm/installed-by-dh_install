@@ -1,0 +1,4 @@
+./scripts/build_vpn_server.sh
+./scripts/iptables.sh
+./scripts/make_config.sh
+./scripts/continue_build_vpn.sh

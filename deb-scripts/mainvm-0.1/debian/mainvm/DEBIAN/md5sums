@@ -1,0 +1,5 @@
+bbb942f70b626d3d07fc3aa3d6d8d110  usr/bin/backup_git.sh
+6a6efcfc5a31d74d15aee8f1c9fc830e  usr/bin/build_ssh_connection.sh
+22735eef34b482af6c028b2391d04f2d  usr/bin/build_static_ip.sh
+8602b0ed758164c79cc409565f00b210  usr/share/doc/mainvm/changelog.Debian.gz
+f08230de7c51b48946477b86f6fe1251  usr/share/doc/mainvm/copyright

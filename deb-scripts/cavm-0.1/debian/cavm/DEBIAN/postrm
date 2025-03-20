@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for user in /home/*
+do
+sudo rm -r "$user"/easy-rsa
+sudo rm "$user"/README.txt
+done
+echo "'\033[01;033[INFO]'For full uninstall please delete easy-rsa and netfilter-persistent"
+
+exit 0

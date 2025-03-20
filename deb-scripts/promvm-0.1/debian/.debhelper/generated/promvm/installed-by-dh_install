@@ -1,0 +1,2 @@
+./files/rules.yml
+./scripts/build_prometheus_server.sh

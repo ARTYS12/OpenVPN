@@ -1,0 +1,11 @@
+Package: mainvm
+Version: 0.1-4
+Architecture: all
+Maintainer: Artyom <artys@unknown>
+Installed-Size: 24
+Section: unknown
+Priority: optional
+Multi-Arch: foreign
+Homepage: <insert the upstream URL, if relevant>
+Description: <insert up to 60 chars description>
+ <Insert long description, indented with spaces.>

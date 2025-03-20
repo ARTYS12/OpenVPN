@@ -1,0 +1,8 @@
+set_var EASYRSA_REQ_COUNTRY "RUS"
+set_var EASYRSA_REQ_PROVINCE "Moscow"
+set_var EASYRSA_REQ_CITY "Moscow City"
+set_var EASYRSA_REQ_ORG "Final Project comp."
+set_var EASYRSA_REQ_EMAIL "artem-ab@list.ru"
+set_var EASYRSA_REQ_OU "LLC"
+set_var EASYRSA_ALGO "ec"
+set_var EASYRSA_DIGEST "sha512"

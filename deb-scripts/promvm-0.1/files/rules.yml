@@ -1,0 +1,136 @@
+groups:
+- name: InfrastructureAlerts
+  rules:
+
+  # CPU Usage
+  - alert: HighCPUUsage
+    expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High CPU usage on {{ $labels.instance }}"
+      description: "CPU usage is above 90% for 5 minutes on instance {{ $labels.instance }}"
+
+  - alert: WarningCPUUsage
+    expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 70
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Warning: CPU usage is high on {{ $labels.instance }}"
+      description: "CPU usage is above 70% for 10 minutes on instance {{ $labels.instance }}"
+
+  # Memory Usage
+  - alert: HighMemoryUsage
+    expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 90
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High memory usage on {{ $labels.instance }}"
+      description: "Memory usage is above 90% for 5 minutes on instance {{ $labels.instance }}"
+
+  - alert: WarningMemoryUsage
+    expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 70
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Warning: Memory usage is high on {{ $labels.instance }}"
+      description: "Memory usage is above 70% for 10 minutes on instance {{ $labels.instance }}"
+
+  - alert: SwapUsage
+    expr: (node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes * 100 > 20
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Swap usage on {{ $labels.instance }}"
+      description: "Swap usage is above 20% for 5 minutes on instance {{ $labels.instance }}. Investigate memory pressure."
+
+  # Disk Space
+  - alert: DiskSpaceLow
+    expr: (node_filesystem_avail_bytes{fstype!="rootfs",mountpoint!=""} / node_filesystem_size_bytes{fstype!="rootfs",mountpoint!=""}) * 100 < 10
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Disk space low on {{ $labels.instance }} - {{ $labels.mountpoint }}"
+      description: "Disk space is below 10% for 5 minutes on instance {{ $labels.instance }} - {{ $labels.mountpoint }}"
+
+  - alert: DiskSpaceWarning
+    expr: (node_filesystem_avail_bytes{fstype!="rootfs",mountpoint!=""} / node_filesystem_size_bytes{fstype!="rootfs",mountpoint!=""}) * 100 < 20
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Warning: Disk space getting low on {{ $labels.instance }} - {{ $labels.mountpoint }}"
+      description: "Disk space is below 20% for 10 minutes on instance {{ $labels.instance }} - {{ $labels.mountpoint }}"
+
+  # Disk I/O (Нужно адаптировать, если не работает)
+  - alert: HighDiskIOWait
+    expr: avg by (instance) (rate(node_disk_io_time_seconds_total[1m])) > 0.1
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High disk I/O wait on {{ $labels.instance }}"
+      description: "High disk I/O wait detected on instance {{ $labels.instance }}. May indicate disk performance issues."
+  # System
+  - alert: VMDown
+    expr: up == 0
+    for: 10m
+    labels:
+      severity: critical
+    annotations:
+      summary: "VM is down: {{ $labels.instance }}"
+      description: "VM {{ $labels.instance }} has been down for more than 10 minutes. No metrics are being received."
+
+  - alert: UnexpectedReboot
+    # Этот алерт срабатывает, если uptime сильно изменился.  НУЖНО НАСТРОИТЬ БАЗОВОЕ ЗНАЧЕНИЕ
+    expr: deriv(node_boot_time_seconds[5m]) != 0
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Unexpected reboot detected on {{ $labels.instance }}"
+      description: "The system uptime has significantly decreased, indicating an unexpected reboot."
+
+- name: OpenVPNAlerts
+  rules:
+  - alert: OpenVPNDown
+    expr: openvpn_up == 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "OpenVPN is down"
+      description: "OpenVPN has been down more than 5 minutes."
+
+  - alert: OpenVPNClientCountLow
+    expr: openvpn_server_connected_clients < 1
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Low number of OpenVPN clients conndected"
+      description: "The number of connected OpenVPN clients is below 1 for 5 minutes. This may indicate an issue with client connectivity."
+
+  - alert: PingExporterDown
+    expr: ping_up == 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Ping Exporter is Down"
+      description: "Ping Exporter has been down more than 5 minutes"
+
+  - alert: OpenVPNHighLatency
+    expr: ping_rtt_mean_seconds > 100
+    for: 2m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High latency to OpenVPN server"
+      description: "Avarage ping latency to 192.168.0.120 is above 100ms. Possible network issues"

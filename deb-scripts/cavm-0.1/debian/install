@@ -1,0 +1,3 @@
+/files/vars /tmp/
+/scripts/build_cavm.sh /usr/bin/
+/scripts/create_ca.sh /usr/bin/

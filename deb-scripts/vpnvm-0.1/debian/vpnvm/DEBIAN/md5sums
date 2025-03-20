@@ -1,0 +1,6 @@
+d177654c3cd2d543500484bffcb76004  usr/bin/build_vpn_server.sh
+021b170f3e78d25eb81215ee74906eda  usr/bin/continue_build_vpn.sh
+b9172fe7a154928d09edf631622e954e  usr/bin/iptables.sh
+5c0a95887ff33ed86e1e786acf31e9dc  usr/bin/make_config.sh
+50d67665c3276b99843adfa8fea01fe7  usr/share/doc/vpnvm/changelog.Debian.gz
+b62f4fc76b204bf0932f9c481145184d  usr/share/doc/vpnvm/copyright

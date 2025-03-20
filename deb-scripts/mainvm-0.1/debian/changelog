@@ -1,0 +1,5 @@
+mainvm (0.1-5) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Artyom <artys@unknown>  Mon, 10 Mar 2025 12:00:48 +0000
